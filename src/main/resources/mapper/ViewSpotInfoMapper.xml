@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.abc.dao.ViewSpotInfoMapper">
+
+
+    <resultMap id="ViewSpotInfoMap" type="ViewSpotInfo">
+        <id property="id" column="id"/>
+        <result property="name"  column="name" />
+        <result property="info"  column="info" />
+        <result property="phone"  column="phone" />
+        <result property="viewWeb"  column="view_web" />
+        <result property="picture"  column="picture" />
+        <result property="spendTime"  column="spend_time" />
+        <result property="transport"  column="transport" />
+        <result property="openTime"  column="open_time" />
+        <result property="ticket"  column="ticket" />
+        <result property="areaTypeOne"  column="area_type_one" />
+        <result property="areaTypeTwo"  column="area_type_two" />
+        <result property="areaTypeThree"  column="area_type_three" />
+        <result property="areaOneName"  column="areaOneName" />
+        <result property="areaTwoName"  column="areaTwoName" />
+        <result property="areaThreeName"  column="areaThreeName" />
+        <result property="createDate"  column="create_date" jdbcType="TIMESTAMP" />
+        <result property="updateDate"  column="update_date" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+
+    <select id="queryAllLeftList" resultMap="ViewSpotInfoMap">
+        select t1.* , t2.NAME as areaTwoName, t3.NAME as areaThreeName from view_spot_info t1
+        left join area t2 on t1.area_type_two = t2.ID
+        left join area t3 on t1.area_type_three = t3.ID
+        <where>
+            <if test="name != null and name != ''">
+                t1.`name` like concat('%',#{name},'%')
+            </if>
+        </where>
+        order by t1.id
+    </select>
+
+</mapper>
