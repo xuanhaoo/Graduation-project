@@ -83,7 +83,7 @@ public class ContentController {
             return Json.fail(oper, "无法更改状态：关键id参数错误");
         }
         ArtContent artContentDB = contentService.selectOne(new EntityWrapper<ArtContent>().eq("id", id));
-        artContentDB.setWeight(checkFlag);
+        artContentDB.setStatus(checkFlag);
         artContentDB.setUpdateDate(new Date());
         boolean success = contentService.updateById(artContentDB);
         return Json.result(oper, success).data("updated", artContentDB.getUpdateDate());

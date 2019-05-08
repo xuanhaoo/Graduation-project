@@ -95,6 +95,8 @@ public class LoginWebService {
         if (customer.getPhone() == null) {
             return Json.fail("oper", "手机号不能为空");
         }
+        String md5Pwd = MD5Util.generatePassword(customer.getPwd());
+        customer.setPwd(md5Pwd);
         customer.setLock(0);
         customer.setSalt("");
         customer.setSex(1);

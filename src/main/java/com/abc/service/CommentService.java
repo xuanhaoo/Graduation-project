@@ -27,4 +27,14 @@ public interface CommentService extends IService<ArtComment> {
      * @return
      */
     CommentCountData packageData();
+
+
+    /**
+     * 前台社区获取用户评论信息
+     * @param page
+     * @param artId
+     * @return
+     */
+    Page<ArtComment> getCommentByContentID(Page page, Integer artId);
+
 }

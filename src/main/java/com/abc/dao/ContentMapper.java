@@ -18,4 +18,13 @@ import java.util.List;
 public interface ContentMapper extends BaseMapper<ArtContent> {
 
     List<ArtContent> queryAllListByLeftJoin(Pagination page, @Param("subjectId")Integer subjectId, @Param("status")Integer status);
+
+
+    /**
+     * 插入文章
+     * @param artContent
+     */
+    void insertContent(ArtContent artContent);
+
+    List<ArtContent> queryAllListAndCityName(@Param("subjectId")Integer subjectId);
 }

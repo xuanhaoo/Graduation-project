@@ -32,6 +32,9 @@ public class ArtContent extends Model<ArtContent> {
     @TableField("body_id")
   private int bodyId;
 
+    @TableField("desc")
+    private String desc;
+
     private String avatar;
 
     @TableField("comment_count")
@@ -75,6 +78,9 @@ public class ArtContent extends Model<ArtContent> {
 
   @TableField(exist = false)
   private String subjectName;
+
+  @TableField(exist = false)
+  private String contentVo;
 
     public Integer getId() {
         return id;
@@ -255,5 +261,21 @@ public class ArtContent extends Model<ArtContent> {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
+    }
+
+    public String getContentVo() {
+        return contentVo;
+    }
+
+    public void setContentVo(String contentVo) {
+        this.contentVo = contentVo;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 }

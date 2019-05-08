@@ -17,6 +17,7 @@ public class ViewSpotInfo extends Model<ViewSpotInfo> {
   private Integer id;
   private String name;
   private String info;
+  private String tags;
   private String phone;
 
   @TableField("view_web")
@@ -57,6 +58,18 @@ public class ViewSpotInfo extends Model<ViewSpotInfo> {
 
   @TableField(exist = false)
   private String areaThreeName;
+
+  @TableField(exist = false)
+  private String percent;
+
+  @TableField(exist = false)
+  private String percentValue;
+
+  @TableField(exist = false)
+  private String[] tagsArr;
+
+  @TableField(exist = false)
+  private String[] picArr;
 
 
   public Integer getId() {
@@ -206,5 +219,45 @@ public class ViewSpotInfo extends Model<ViewSpotInfo> {
 
   public void setPicture(String picture) {
     this.picture = picture;
+  }
+
+  public String getTags() {
+    return tags;
+  }
+
+  public void setTags(String tags) {
+    this.tags = tags;
+  }
+
+  public String getPercent() {
+    return percent;
+  }
+
+  public void setPercent(String percent) {
+    this.percent = percent;
+  }
+
+  public String getPercentValue() {
+    return percentValue;
+  }
+
+  public void setPercentValue(String percentValue) {
+    this.percentValue = percentValue;
+  }
+
+  public String[] getTagsArr() {
+    return tagsArr;
+  }
+
+  public void setTagsArr(String[] tagsArr) {
+    this.tagsArr = tagsArr;
+  }
+
+  public String[] getPicArr() {
+    return picArr;
+  }
+
+  public void setPicArr(String[] picArr) {
+    this.picArr = picArr;
   }
 }

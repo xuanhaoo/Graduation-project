@@ -1,6 +1,7 @@
 package com.abc.dao;
 
 import com.abc.entity.PublicPraiseView;
+import com.abc.vo.PraiseAvarage;
 import com.abc.vo.PublicEchartsJson;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.baomidou.mybatisplus.plugins.pagination.Pagination;
@@ -22,4 +23,8 @@ public interface PublicPraiseViewMapper extends BaseMapper<PublicPraiseView> {
     List<PublicEchartsJson> analysisPublicPraiseData(@Param("setTime")Date setTime);
 
     List<PublicPraiseView> queryPublicBySpotId(Pagination page, @Param("spotId") Integer spotId);
+
+    PraiseAvarage computeAllSingleRate(@Param("spotId") Integer spotId);
+
+    List<PublicPraiseView> queryPublicPraiseByIndex(Pagination page, @Param("spotId")Integer spotId);
 }

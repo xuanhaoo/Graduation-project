@@ -3,11 +3,16 @@ package com.abc.service.impl;
 import com.abc.dao.PublicPraiseViewMapper;
 import com.abc.entity.PublicPraiseView;
 import com.abc.service.PublicPraiseViewService;
+import com.abc.vo.PraiseAvarage;
 import com.abc.vo.PublicEchartsJson;
+import com.abc.webservice.SharePugWebService;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -22,6 +27,8 @@ import java.util.List;
 @Service
 public class PublicPraiseViewServiceImpl extends ServiceImpl<PublicPraiseViewMapper, PublicPraiseView> implements
         PublicPraiseViewService {
+
+    private static final Logger log = LoggerFactory.getLogger(PublicPraiseViewServiceImpl.class);
 
 
     @Override
@@ -54,5 +61,31 @@ public class PublicPraiseViewServiceImpl extends ServiceImpl<PublicPraiseViewMap
     @Override
     public Page<PublicPraiseView> queryPublicPraiseBySpot(Page page, Integer spotId) {
         return page.setRecords(baseMapper.queryPublicBySpotId(page, spotId));
+    }
+
+    @Override
+    public PraiseAvarage computeAllSingleRate(Integer spotId) {
+        return baseMapper.computeAllSingleRate(spotId);
+    }
+
+    @Override
+    public Page<PublicPraiseView> queryPublicPraiseByIndex(Page page, Integer spotId) {
+        List<PublicPraiseView> list = baseMapper.queryPublicPraiseByIndex(page, spotId);
+        List<PublicPraiseView> resultList = new ArrayList<>();
+        if (null != list && !list.isEmpty()) {
+            for (PublicPraiseView ppv : list) {
+                float sum = ppv.getFacilities() + ppv.getManage() + ppv.getPassengerFlow() + ppv.getScenery()
+                        + ppv.getDiet() + ppv.getTransport() + ppv.getService();
+                float avarageRateTmp = sum / 7;
+//                float avarageRate = (float)(Math.round(avarageRateTmp*100)/100);
+                BigDecimal b  =  new  BigDecimal(avarageRateTmp);
+                float avarageRate = b.setScale(1,  BigDecimal.ROUND_HALF_UP).floatValue();
+                ppv.setAvarageRate(avarageRate);
+                resultList.add(ppv);
+            }
+        }
+        page.setRecords(resultList);
+
+        return page;
     }
 }

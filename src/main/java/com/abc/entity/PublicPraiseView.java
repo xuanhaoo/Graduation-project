@@ -41,6 +41,16 @@ public class PublicPraiseView extends Model<PublicPraiseView> {
   @TableField(exist = false)
   private String authorName;
 
+  @TableField(exist = false)
+  private String authorAvatar;
+
+
+  @TableField(exist = false)
+  private float avarageRate;
+
+  @TableField(exist = false)
+  private int addressId;
+
 
   public Integer getId() {
     return id;
@@ -160,6 +170,30 @@ public class PublicPraiseView extends Model<PublicPraiseView> {
 
   public void setAuthorName(String authorName) {
     this.authorName = authorName;
+  }
+
+  public float getAvarageRate() {
+    return avarageRate;
+  }
+
+  public void setAvarageRate(float avarageRate) {
+    this.avarageRate = avarageRate;
+  }
+
+  public String getAuthorAvatar() {
+    return authorAvatar;
+  }
+
+  public void setAuthorAvatar(String authorAvatar) {
+    this.authorAvatar = authorAvatar;
+  }
+
+  public int getAddressId() {
+    return addressId;
+  }
+
+  public void setAddressId(int addressId) {
+    this.addressId = addressId;
   }
 
   @Override

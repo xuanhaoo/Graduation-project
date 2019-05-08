@@ -66,4 +66,9 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, ArtComment> i
         commentCountData.setEchartsJsonList(echartsJsonList);
         return commentCountData;
     }
+
+    @Override
+    public Page<ArtComment> getCommentByContentID(Page page, Integer artId) {
+        return page.setRecords(baseMapper.getCommentByContentId(page, artId));
+    }
 }

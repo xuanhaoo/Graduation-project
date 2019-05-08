@@ -58,7 +58,7 @@ public class SubjectController {
         if (size == 0) size = 10;
 
         Wrapper<ArtSubject> queryParams = new EntityWrapper<>();
-        queryParams.orderBy("createDate", true);
+        queryParams.orderBy("create_date", true);
         if (StringUtils.isNotBlank(subName)) {
             queryParams.like("name", subName);
         }

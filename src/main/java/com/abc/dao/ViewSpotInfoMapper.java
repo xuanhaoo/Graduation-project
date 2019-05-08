@@ -24,4 +24,15 @@ public interface ViewSpotInfoMapper extends BaseMapper<ViewSpotInfo> {
      * @return
      */
     List<ViewSpotInfo> queryAllLeftList(Pagination page, @Param("name")String name);
+
+    /**
+     * 查询景点数据
+     * @param page
+     * @param addressId
+     * @return
+     */
+    List<ViewSpotInfo> queryAllLeftListByAddressId(Pagination page, @Param("addressId")int addressId);
+
+
+    List<ViewSpotInfo> queryAllIndexList();
 }

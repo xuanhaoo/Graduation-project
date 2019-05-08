@@ -1,9 +1,12 @@
 package com.abc.service;
 
 import com.abc.entity.PublicPraiseView;
+import com.abc.vo.PraiseAvarage;
 import com.abc.vo.PublicEchartsJson;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.IService;
+
+import java.util.List;
 
 /**
  * @Author: liangxuanhao
@@ -29,4 +32,21 @@ public interface PublicPraiseViewService extends IService<PublicPraiseView> {
 
 
     Page<PublicPraiseView> queryPublicPraiseBySpot(Page page, Integer spotId);
+
+
+    /**
+     * 计算某一个景点下的平均分
+     * @param spotId
+     * @return
+     */
+    PraiseAvarage computeAllSingleRate(Integer spotId);
+
+    /**
+     * 获取某个景点的所有的口碑评价，并且各自计算各个用户的平均综合分
+     * @param page
+     * @param spotId
+     * @return
+     */
+    Page<PublicPraiseView> queryPublicPraiseByIndex(Page page, Integer spotId);
+
 }

@@ -21,4 +21,12 @@ public interface CommentMapper extends BaseMapper<ArtComment> {
     List<ArtComment> queryTheLastComment();
 
     Integer packageData(@Param("subjectId")Integer subjectId);
+
+    /**
+     * 前端社区查询文章评论
+     * @param page
+     * @param artId
+     * @return
+     */
+    List<ArtComment> getCommentByContentId(Pagination page, @Param("artId")Integer artId);
 }

@@ -11,4 +11,10 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface ArtContentBodyMapper extends BaseMapper<ArtBody> {
+
+    /**
+     * 插入文章主体内容
+     * @param artBody
+     */
+    void insertArticleBody(ArtBody artBody);
 }

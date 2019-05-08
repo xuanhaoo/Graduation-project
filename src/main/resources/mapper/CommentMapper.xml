@@ -10,6 +10,7 @@
         <result property="createDate"  column="create_date" jdbcType="TIMESTAMP" />
         <result property="createBy"  column="create_by" />
         <result property="authorName"  column="authorName" />
+        <result property="authorAvatar"  column="authorAvatar" />
     </resultMap>
 
 
@@ -21,13 +22,13 @@
                 t1.`art_id` = #{artId}
             </if>
         </where>
-        order by t1.id
+        order by t1.id desc
     </select>
 
     <select id="queryTheLastComment" resultMap="ArtCommentMap">
         select t1.*, t2.nick_name as authorName from art_comment t1
         left join customer t2 on t1.create_by = t2.id
-        order by t1.create_date limit 10
+        order by t1.create_date desc limit 10
     </select>
 
     <select id="packageData" resultType="int">
@@ -37,6 +38,17 @@
                 subject_id = #{subjectId}
             </if>
         </where>
+    </select>
+
+    <select id="getCommentByContentId" resultMap="ArtCommentMap">
+        select t1.*, t2.nick_name as authorName,t2.avatar as authorAvatar from art_comment t1
+        left join customer t2 on t1.create_by = t2.id
+        <where>
+            <if test="artId != null and artId != 0">
+                t1.`art_id` = #{artId}
+            </if>
+        </where>
+        order by t1.id desc
     </select>
 
 </mapper>
